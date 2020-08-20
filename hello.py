@@ -1,0 +1,13 @@
+import ibm_db
+import ibm_db_dbi as dbi
+conn = ibm_db.connect("DATABASE=DWHDEV;HOSTNAME=DVBIDB03;PORT=50005;PROTOCOL=TCPIP;UID=nliu;PWD=Ytm^pTo7z8F!XZU;", "", "") 
+stmt = "Select * from BI_TMP.SALES_ORDER "
+print ("Number of affected rows ")
+result = ibm_db.exec_immediate(conn, stmt)
+# if sql_stmt is not None:
+row = ibm_db.fetch_tuple(result)
+while ( row ):
+    for i in row:
+         print(i)
+    row = ibm_db.fetch_tuple(result)
+ibm_db.close(conn)
